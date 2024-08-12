@@ -19,4 +19,11 @@ app.use(express.static("public")); //  This middleware serves static files like 
 
 app.use(cookieParser()); // This middleware parses cookies attached to the client’s request object
 
+// routes import
+const userRoute = require("./routes/user.routes");
+const videoRoute = require("./routes/video.routes");
+
+// routes declaration
+app.use("/api/v1/users", userRoute);
+
 module.exports = app;
