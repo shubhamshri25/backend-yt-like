@@ -1,5 +1,5 @@
 const asyncHandler = (requestHandler) => {
-  return (err, req, res, next) => {
+  return (req, res, next) => {
     Promise.resolve(requestHandler(req, res, next)).catch((err) => next(err));
   };
 };
@@ -8,4 +8,4 @@ const asyncHandler = (requestHandler) => {
 //   It ensures that any errors thrown in the asynchronous handler are caught and passed
 //   to the Express error-handling middleware.
 
-module.exports = asyncHandler;
+module.exports =  asyncHandler ;
