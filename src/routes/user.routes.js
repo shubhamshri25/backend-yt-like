@@ -4,10 +4,14 @@ const {
   loginUser,
   logoutUser,
   refreshAccessToken,
+  changeCurrentPassword,
+  getCurrentUser,
+  updateAccountDetails,
+  updateUserAvatar,
 } = require("../controllers/user.controllers");
 const router = express.Router();
 const upload = require("../middlewares/multer.middleware");
-const verifyJwt = require("../middlewares/auth.middleware");
+const verifyJWT = require("../middlewares/auth.middleware");
 
 router.route("/register").post(
   upload.fields([
@@ -27,7 +31,8 @@ router.route("/login").post(loginUser);
 
 // secured routes
 
-router.route("/logout").post(verifyJwt, logoutUser);
+router.route("/logout").post(verifyJWT, logoutUser);
 router.route("/refresh-token").post(refreshAccessToken);
+router.route("/change-password").post(verifyJWT, changeCurrentPassword);
 
 module.exports = router;
